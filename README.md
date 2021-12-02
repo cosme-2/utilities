@@ -4,4 +4,4 @@ Ce répertoire contient des différents outils du traitement des données.
 
 ---
 
-This directory contains different tools for data processing.
+This repository contains different tools for data processing.
