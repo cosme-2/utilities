@@ -18,7 +18,7 @@ Pour résoudre ce type de problème, il a fallu uniformiser l'encodage de toutes
 
 Mettez l'ensemble du dossier "Decoding HTML entities" sur votre serveur ou votre site web. À l'intérieur de ce dossier principal, mettez tous les fichiers JSON que vous souhaitez encoder dans le dossier "json/originals". Par le biais de votre serveur ou de votre website, faites charger le fichier index.php (il suffit de "aller" sur la page index.php sur votre navigateur internet). Les fichiers décodés apparaîtront dans le dossier "json/decoded" avec les mêmes noms que les fichiers d'origines et avec le suffixe "-decoded".
 
-Pour plus d'information sur ce point, voir également ma question ici: https://stackoverflow.com/questions/70117478/convert-html-entities-in-json-back-to-characters?noredirect=1#comment123949878_70117478
+Pour plus d'information sur ce point, voir également ma question ici: https://stackoverflow.com/questions/70117478/convert-html-entities-in-json-back-to-characters
 
 # English version
 
@@ -40,4 +40,4 @@ To solve this type of problem, it was necessary to standardize the encoding syst
 
 Put the whole "Decoding HTML entities" folder on your server or website. Inside this main folder, put all JSON files you want to encode in the "json/originals" folder. Through your server or your website, load the index.php file (just "go" to the index.php page on your internet browser). The decoded files will appear in the "json/decoded" folder with the same names as the original files and with the "-decoded" suffix.
 
-For more information on this point, see also my question here: https://stackoverflow.com/questions/70117478/convert-html-entities-in-json-back-to-characters?noredirect=1#comment123949878_70117478
+For more information on this point, see also my question here: https://stackoverflow.com/questions/70117478/convert-html-entities-in-json-back-to-characters
