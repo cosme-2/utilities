@@ -41,4 +41,3 @@ To solve this type of problem, it was necessary to standardize the encoding syst
 Put the whole "Decoding HTML entities" folder on your server or website. Inside this main folder, put all JSON files you want to encode in the "json/originals" folder. Through your server or your website, load the index.php file (just "go" to the index.php page on your internet browser). The decoded files will appear in the "json/decoded" folder with the same names as the original files and with the "-decoded" suffix.
 
 For more information on this point, see also my question here: https://stackoverflow.com/questions/70117478/convert-html-entities-in-json-back-to-characters?noredirect=1#comment123949878_70117478
-*/
