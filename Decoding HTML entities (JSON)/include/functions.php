@@ -80,7 +80,7 @@ function json_file_decode() {//0
 
     } //1
 
-    echo "<div class=\"confirmation-decoding-message\">Tous les fichiers json ont été décodés.</div>";
+    echo "<div class=\"confirmation-decoding-message\">Tous les fichiers json ont été décodés. Consultez le dossier \"json/decoded\".</div>";
 
 }//0
 
