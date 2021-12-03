@@ -60,14 +60,6 @@ hr {
     font-size: 16px;
 }
 
-.main-reminder {
-    background: #FAF9F5;
-    padding: 10px;
-    border: 1px solid #F6CBCB;
-    border-radius: 5px;
-    margin-bottom: 50px;
-}
-
 .heading-1,
 .decode-submit-button {
     font-weight: bold;
@@ -106,6 +98,7 @@ hr {
     RESULT PAGE (result.php)
    ========================================================================== */
 
+.main-reminder,
 .error-message {
     background: #FCEEEE;
     padding: 10px;

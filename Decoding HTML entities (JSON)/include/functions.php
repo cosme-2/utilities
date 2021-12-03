@@ -26,7 +26,7 @@ function find_json_file_names() {//0
     $fileNamesListString = implode("<br/> ", $fileNamesList);
 
     // return a string with a liste of all file names
-    echo $fileNamesListString;
+    return $fileNamesListString;
 }//0
 
 /* ==========================================================================
