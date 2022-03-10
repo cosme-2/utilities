@@ -2,7 +2,7 @@
 include('include/header.html');
 require_once('include/functions.php');
 ?>
-
+ 
 <!-- BEGIN: Check if there are some file in  "json/originals" folder -->
 
 <!-- if there are some files in "json/originals" folder ask for decoding -->
