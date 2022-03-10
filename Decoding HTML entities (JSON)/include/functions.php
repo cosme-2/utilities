@@ -126,7 +126,7 @@ function json_validate($string) { //0
         default:
             $error = 'Unknown JSON error occured.';
             break;
-    } //1
+    } //1 
 
     return $error;
 } //0
