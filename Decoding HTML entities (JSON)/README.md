@@ -8,7 +8,7 @@ Ce problème semble être le plus flagrant dans le corpus “Cartulaires wallons
 
 Pour résoudre ce type de problème, il a fallu uniformiser l'encodage de toutes les notices.
 
-1) Pour cela la première étape a consisté dans le remplacement de toutes les références de caractère `&amp;` par "&". Cela a permis de ramener toutes les références "complexes" de type `&amp;eacute;` aux entités HTML standardisées de type `&eacute;`. 
+1) Pour cela la première étape a consisté dans le remplacement de toutes les références de caractère `&amp;` par "&". Cela a permis de ramener toutes les références "complexes" de type `&amp;eacute;` aux entités HTML standardisées de type `&eacute;`.
 
 2) Deuxième étape, a consisté dans la transformation de toutes les entités HTML en leurs caractères spéciaux respectifs. (C'est-à-dire, l'entité HTML `&eacute;`, par exemple, devient le signe spécial de la langue française "é"). À noter également que lors de ce processus de la transformation des entités HTML en leurs signes spéciaux respectifs, toutes les entités qui représentent les balises HTML ont été également transformées; par exemple, les entités `&lt;` deviennent "<", etc.
 
