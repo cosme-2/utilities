@@ -1,0 +1,225 @@
+[
+    {
+        "id": 157346,
+        "name": "bullarium-franciscanum-5433",
+        "type": "acte",
+        "url": "http://telma-chartes.irht.cnrs.fr/bullarium-franciscanum/notice/157346",
+        "project_slug": "bullarium-franciscanum",
+        "project_label": "Bullarium Franciscanum",
+        "user": "bullarium-franciscanum_admin",
+        "last_update": "2021-09-20 16:10:17",
+        "licence": "Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 France (CC BY-NC-SA 3.0 FR) ",
+        "licence_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/fr/",
+        "status": 2,
+        "elements":
+        [
+            {
+                "id": 2704347,
+                "status": 2,
+                "type": "auteur",
+                "value": "Urbain V (1362-1370)"
+            },
+            {
+                "id": 2704348,
+                "status": 2,
+                "type": "analyse",
+                "value": "Petrum Cornario de Venetiis ord. Min. ecclesiae Coronen. (<i>Corone</i> in Graecia) praeficit in episcopum.<a class=\"note\" href=\"#note-1\">1</a>"
+            },
+            {
+                "id": 2704349,
+                "status": 2,
+                "type": "date_libre",
+                "value": "1367, aprilis 14, Avinione."
+            },
+            {
+                "id": 2704350,
+                "status": 2,
+                "type": "date",
+                "value": " 1367",
+                "children":
+                {
+                    "date_deb_annee": "1367"
+                },
+                "range":
+                {
+                    "date_apres": 13670000,
+                    "date_avant": 13679999
+                }
+            },
+            {
+                "id": 2704352,
+                "status": 2,
+                "type": "transcription",
+                "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n Dilecto filio Petro Cornario de Venetiis electo Coronen.   Inter sollicitudines varias etc. Nuper siquidem ecclesia Coronen. ex eo vacante, quod nos ... Paulum Castellan. tunc Coronen. episcopum ... ad Castellan. ecclesiam duximus transferendum ..., nos ad provisionem ipsius ecclesiae Coronen. ... intendentes ... demum ad te ordinis fratrum Minorum professorem ... convertimus oculos nostrae mentis. Quibus omnibus debita meditatione pensatis de persona tua eidem ecclesiae Coronen. ... providemus teque illi praeficimus in episcopum et pastorem etc. Datum Avinione XVIII kal. maii anno quinto. In e. m. capitulo et vassallis ecclesiae Coronen., clero ac populo civ. et dioec. Coronen., archiepiscopo Patracen.a  \n"
+            },
+            {
+                "id": 2704353,
+                "status": 2,
+                "type": "edition",
+                "value": "Bullarium Franciscanum romanorum pontificum, tomus I ab Honorio III ad Innocentium IIII, Rome, 1759, n°1008., pp.-411"
+            },
+            {
+                "id": 2704354,
+                "status": 2,
+                "type": "apparat_critique",
+                "value": "Qui Petrus die 14 sept. 1386 a Clem. VII ad ecclesiam Patracen. transfertur.",
+                "children":
+                {
+                    "numero_note": "a"
+                }
+            },
+            {
+                "id": 2704356,
+                "status": 2,
+                "type": "notes_historiques",
+                "value": "Reg. Vat. ser. Avin. t. 164 (Urb. V a. 5, p. 1), f. 91.",
+                "children":
+                {
+                    "numero_note": "1"
+                }
+            }
+        ]
+    },
+    {
+        "id": 157353,
+        "name": "bullarium-franciscanum-5440",
+        "type": "acte",
+        "url": "http://telma-chartes.irht.cnrs.fr/bullarium-franciscanum/notice/157353",
+        "project_slug": "bullarium-franciscanum",
+        "project_label": "Bullarium Franciscanum",
+        "user": "bullarium-franciscanum_admin",
+        "last_update": "2021-09-20 16:10:17",
+        "licence": "Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 France (CC BY-NC-SA 3.0 FR) ",
+        "licence_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/fr/",
+        "status": 2,
+        "elements":
+        [
+            {
+                "id": 2704416,
+                "status": 2,
+                "type": "auteur",
+                "value": "Urbain V (1362-1370)"
+            },
+            {
+                "id": 2704417,
+                "status": 2,
+                "type": "analyse",
+                "value": "Ubertino de Coriliono ord. Min., mag. theol., mandat, ut Rogerio de Heraclia ord. Min., qui librum sententiarum in diversis studiis legit, si eum in Bononien. vel alio ordinis Min. generali studio per suam et aliorum saltem quatuor magistrorum diligentem examinationem sufficientem et idoneum repererit, magisterii honorem et docendi licentiam largiatur ac concedat, ut perinde quibuscunque gratiis etc. gaudeat et fruatur, ac si in studio Parisien. magistratus esset.<a class=\"note\" href=\"#note-1\">1</a>"
+            },
+            {
+                "id": 2704418,
+                "status": 2,
+                "type": "date_libre",
+                "value": "1367, septembris 13, Viterbii."
+            },
+            {
+                "id": 2704419,
+                "status": 2,
+                "type": "date",
+                "value": " 1367",
+                "children":
+                {
+                    "date_deb_annee": "1367"
+                },
+                "range":
+                {
+                    "date_apres": 13670000,
+                    "date_avant": 13679999
+                }
+            },
+            {
+                "id": 2704421,
+                "status": 2,
+                "type": "transcription",
+                "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n Dilecto filio Ubertino de Coriliono ord. fratr. Min. professori, in s. theologia magistro.   Viri sacrae lectionis studio dediti etc. Datum Viterbii idus septembris anno quinto. \n"
+            },
+            {
+                "id": 2704422,
+                "status": 2,
+                "type": "edition",
+                "value": "Bullarium Franciscanum romanorum pontificum, tomus I ab Honorio III ad Innocentium IIII, Rome, 1759, n°1015., pp.-413"
+            },
+            {
+                "id": 2704423,
+                "status": 2,
+                "type": "notes_historiques",
+                "value": "Reg. Vat. ser. Avin. t. 165 (Urb. V a. 5, p. 2), f. 437. Cfr. supra n. 1013 et infra n. 1185.",
+                "children":
+                {
+                    "numero_note": "1"
+                }
+            }
+        ]
+    },
+    {
+        "id": 157358,
+        "name": "bullarium-franciscanum-5445",
+        "type": "acte",
+        "url": "http://telma-chartes.irht.cnrs.fr/bullarium-franciscanum/notice/157358",
+        "project_slug": "bullarium-franciscanum",
+        "project_label": "Bullarium Franciscanum",
+        "user": "bullarium-franciscanum_admin",
+        "last_update": "2021-09-20 16:10:17",
+        "licence": "Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 3.0 France (CC BY-NC-SA 3.0 FR) ",
+        "licence_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/fr/",
+        "status": 2,
+        "elements":
+        [
+            {
+                "id": 2704463,
+                "status": 2,
+                "type": "auteur",
+                "value": "Urbain V (1362-1370)"
+            },
+            {
+                "id": 2704464,
+                "status": 2,
+                "type": "analyse",
+                "value": "Thomae ministro generali ord. Min. (cfr. supra n. 1016 et infra n. 1163), mag. theol., mandat, ut Rodulpho Cazaguerra de Forlivio ord. Min., qui in studio Parisien. et in quampluribus aliis studiis in theol. facult. studuit et in studiis Neapolitan. ac Venetiarum et Paduan. pluribus annis, in illis quidem ut lector, in Paduan. vero ut principalis lector legit, si eum per suam et aliorum saltem quatuor magistrorum diligentem examinationem sufficientem et idoneum repererit, magisterii honorem et docendi licentiam largiatur atque concedat, ut perinde quibuscunque gratiis etc. gaudeat ac fruatur, ac si in Parisiensi studio magistratus esset.<a class=\"note\" href=\"#note-1\">1</a>"
+            },
+            {
+                "id": 2704465,
+                "status": 2,
+                "type": "date_libre",
+                "value": "1367, octobris 8, Viterbii."
+            },
+            {
+                "id": 2704466,
+                "status": 2,
+                "type": "date",
+                "value": " 1367",
+                "children":
+                {
+                    "date_deb_annee": "1367"
+                },
+                "range":
+                {
+                    "date_apres": 13670000,
+                    "date_avant": 13679999
+                }
+            },
+            {
+                "id": 2704468,
+                "status": 2,
+                "type": "transcription",
+                "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n Dilecto filio Thomae ord. fratr. Min. ministro generali, in s. theologia magistro.   Viri sacrae lectionis studio dediti etc. Datum Viterbii VIII idus octobris anno quinto. \n"
+            },
+            {
+                "id": 2704469,
+                "status": 2,
+                "type": "edition",
+                "value": "Bullarium Franciscanum romanorum pontificum, tomus I ab Honorio III ad Innocentium IIII, Rome, 1759, n°1020., pp.-415"
+            },
+            {
+                "id": 2704470,
+                "status": 2,
+                "type": "notes_historiques",
+                "value": "Reg. Vat. ser. Avin. t. 165 (Urb. V a. 5, p. 2), f. 450.",
+                "children":
+                {
+                    "numero_note": "1"
+                }
+            }
+        ]
+    }
+]

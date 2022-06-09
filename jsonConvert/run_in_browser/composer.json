@@ -1,0 +1,20 @@
+{
+    "name": "mariecharbonnel/cosme-convert",
+    "autoload": {
+        "psr-4": {
+            "Mariecharbonnel\\CosmeConvert\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marie Charbonnel",
+            "email": "charbonnel.marie.e@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.0",
+        "halaxa/json-machine": "^0.7.0",
+        "salsify/json-streaming-parser": "^8.2",
+        "pcrov/jsonreader": "^1.0"
+    }
+}

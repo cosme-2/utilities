@@ -1,0 +1,24 @@
+1/Pour l'export général, le code est dans l'index.php, où d'autres variables sont à injecter avec les étapes suivantes :
+- lignes 97 et 99 : le calcul de la taille du tableau afin de déterminer si une partition est nécessaire.
+- lignes 103 à 123 : si la taille est au-delà de 45 Mo :
+>ligne 104 : la variable partition à true afin d'adapter la réaction dans le template
+>ligne 105 : le calcul du nombre totale d'items avec sizeof()
+>ligne 106 : le calcul du nombre d'items à placer dans chaque partie du tableau à indiquer dans arraychunk()
+>ligne 110 la division du tableau via arraychunk()
+>ligne 114 à 121 : la boucle qui parcourt le tableau résultat de l'arraychunk() et qui itère l'envoi vers le twig de
+>>chaque "sous-élément"
+>>de la variable avec le nombre total d'items nbItems afin de l'afficher dans la partie datasetPartition du template
+>>de la variable booléenne partition afin d'adapter la réaction dans le template
+>>de la clé afin de dire si nous sommes sur la première ou la deuxième partie de la partition
+>puis la génération du fichier.
+> après passage du contenu renvoyé par le twig par la fonction prettyPrint() ligne 39 à 94 qui règle la syntaxe json
+- lignes 125 à 134 : si la taille est en-dessous de 45 Mo :
+>ligne 126 : la variable partition à false afin d'adapter la réaction dans le template
+>ligne 127 : $data est injectée avec 'dataset' => $data dans le twig.
+>ligne 132 : génération du fichier après passage du contenu renvoyé par le twig par la fonction prettyPrint() ligne 39 à 94
+
+2/Pour l'indexnotice.php, il n'y a pas de changement dans les variables à envoyer dans le render, de ce côté seul le twig est à modifier j'ai gardé le même nom de fichier json.html.twig.
+
+3/pour les twig
+J'ai opté pour une boucle qui interroge les types puis les éléments dans les types afin de régler les problèmes de dupplicate keys json.
+

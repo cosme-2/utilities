@@ -1,0 +1,122 @@
+{% for object in dataset %}
+	{% if loop.index == 1 %}
+	{
+		"datasetInformation":
+		{
+		{% if object.project_label is defined %}
+			"datasetName":
+			{{ object.project_label|json_encode()|raw}},
+		{% endif %}
+		{% if object.project_slug == "loj22" or object.project_slug == "aposcripta" or object.project_slug == "bullarium-franciscanum" or object.project_slug == "cartulaires-wallons" or object.project_slug == "cartulr" or object.project_slug == "originaux" or object.project_slug == "originaux2" or object.project_slug == "transscript" %}
+			"datasetURL":
+			{% if object.project_slug == "aposcripta" %}"http://telma-chartes.irht.cnrs.fr/aposcripta/page/accueil",
+				{% elseif object.project_slug == "bullarium-franciscanum" %}"http://telma-chartes.irht.cnrs.fr/bullarium-franciscanum/page/presentation",
+				{% elseif object.project_slug == "cartulaires-wallons" %}"https://telma-repertoires.irht.cnrs.fr/cartulaires-wallons/page/presentation",
+				{% elseif object.project_slug == "cartulr" %}"https://telma-repertoires.irht.cnrs.fr/cartulr/page/presentation",
+				{% elseif object.project_slug == "originaux" %}"http://telma-chartes.irht.cnrs.fr/originaux/page/presentation",
+				{% elseif object.project_slug == "originaux2" %}"http://telma-chartes.irht.cnrs.fr/originaux2/page/presentation",
+				{% elseif object.project_slug == "loj22" %}"http://telma-chartes.irht.cnrs.fr/loj22/page/presentation",
+				{% elseif object.project_slug == "transscript" %}"http://telma-chartes.irht.cnrs.fr/transscript/page/transscript-project",
+			{% endif %}
+			"datasetJsonSchemaURL": "/schemas/{{ object.project_slug}}.dataset.schema.json",
+			"datasetAuthors":
+				[
+			{% if object.project_slug == "aposcripta" %}"Théry, Julien (Université Lumière de Lyon/ CIHAM, UMR 5648)"
+				{% elseif object.project_slug == "bullarium-franciscanum" %}"Heullant-Donat, Isabelle (Université de Reims)"
+				{% elseif object.project_slug == "cartulaires-wallons" %}"Verpeaux, Nathalie (Université de Namur)"
+				{% elseif object.project_slug == "cartulr" %}"Bertrand, Paul (Université catholique de Louvain)"
+				{% elseif object.project_slug == "originaux" %}"Institut de Recherche et d'Histoire des Textes"
+				{% elseif object.project_slug == "originaux2" %}"Centre de Médiévistique Jean-Schneider (ERL 7229 Université de Lorraine-CNRS)"
+				{% elseif object.project_slug == "transscript" %}"Guyot-Bachy, Isabelle (Université de Lorraine - CRUHL)",
+								        "Margue, Michel (Université de Luxembourg)"
+				{% elseif object.project_slug == "loj22" %}"Jamme, Armand (UMR 5648, CNRS)"
+			{% endif %}
+				],
+		{% endif %}
+		{% if partition == true %}
+			{% set key = key + 1 %}
+		"datasetPartition":
+		{
+			"PartitionNumber":{{ key }},
+			"PartitionsInDataset": 2,
+			"ItemsInPartition":{{ loop.revindex0 }},
+			"ItemsInDataset":{{ nbItems }}
+		},
+		{% endif %}
+		"datasetCreationDate": "{{ "now"|date("d/m/Y") }}",
+		"datasetLicence": "CC BY-NC-SA 3.0 FR",
+		"datasetStatus": "published"
+	},
+		
+		"datasetItems":
+		[
+	{% endif %}
+		{
+		"itemIdTELMA" : {{object.id|json_encode()|raw}},
+		"itemURL" :{% if object.url is not null %}{{ object.url|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},{% elseif object.url is null %}"https://telma-repertoires.irht.cnrs.fr/{{ object.project_slug }}/notice-{{ object.type }}/{{ object.id }}",{% endif %}
+		"itemStatus" :{% if object.status == 2 %}"published",{% endif %}{% if object.status == 1 %}"not published",{% endif %}
+		"itemType":{{ object.type|json_encode()|raw }},
+	{#établit un tableau avec les types des elements#}
+	{% set type = object.elements|column('type') %}
+	{#filtre et supprime les doublons dans les types#}
+	{% set newtype = [] %}
+	{% for name in type %}
+		{% if name not in newtype and name != "id_telma" %}
+			{% set newtype = newtype|merge([name]) %}
+		{% endif %}
+	{% endfor %}
+	{#parcourt les types#}
+	{% for type in newtype %}
+		{#récupère les éléments par type#}
+		{% for element in object.elements|filter(element => element.type == type) %}
+			{% if loop.length == 1 and element.children is not defined %}
+		{{element.type|json_encode()|raw}}:{{element.value|escape|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw}}
+			{%~ elseif loop.length == 1 and element.children is defined and element.range is defined %}
+				{% set varName = element.type ~ 'Group' %}
+				{% set children = element.children %}
+				{% set range = element.range %}
+				{% set children = children|merge(range) %}
+				{% set parentType = element.type %}
+				{% set parentValue = element.value %}
+				{% set parent = { (parentType) : parentValue } %}
+				{% set parent = parent|merge(children) %}
+		{{varName|json_encode()|raw}}:
+		{{parent|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw}}
+			{%~ elseif loop.length == 1 and element.children is defined and element.range is not defined %}
+				{% set varName = element.type ~ 'Group' %}
+				{% set children = element.children %}
+				{% set parentType = element.type %}
+				{% set parentValue = element.value %}
+				{% set parent = { (parentType) : parentValue } %}
+				{% set parent = parent|merge(children)  %}
+		{{varName|json_encode()|raw}}:
+		{{parent|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw}}
+			{% endif %}
+		{%~ if loop.length > 1 %}
+		{%~ if loop.first %}
+		{%~ if element.children is not defined %}
+		{{element.type|json_encode()|raw}} : [
+		{%~ elseif element.children is defined %}
+		{% set varName = element.type ~ 'Group' %}
+		{{varName|json_encode()|raw}}: [
+		{% endif ~%}
+	{% endif ~%}
+	{%~ if element.children is not defined %}
+		{{element.value|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw}}
+		{%~ elseif element.children is defined %}{% set children = element.children %}
+		{% set parentType = element.type %}
+		{% set parentValue = element.value %}
+		{% set parent = { (parentType) : parentValue } %}
+		{% set parent = parent|merge(children) %}
+		{{parent|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw}}
+	{% endif ~%}
+{%~ if not loop.last %},{% endif ~%}
+{% if loop.last %}]{% endif %}
+{% endif ~%}
+		{% endfor %}
+{% if not loop.last %},{% endif %}
+{% if loop.last %}}{% endif %}
+	{% endfor %}
+{% if not loop.last %},{% endif %}
+{% if loop.last %}]}{% endif %}
+{% endfor %}

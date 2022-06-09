@@ -1,0 +1,293 @@
+{# BEGIN. Set variables #}
+	{# These variables are used to construct information about the dataset in the "head part". #}
+	
+	{# Set dataset base URLs #}
+	{% set chartes_base_URL = 'http://telma-chartes.irht.cnrs.fr/' %}
+	{% set repertoires_base_URL = 'https://telma-repertoires.irht.cnrs.fr/' %}
+
+	{# Set schema base URLs #}
+	{% set schema_base_URL = 'https://raw.githubusercontent.com/cosme-2/corpus/main/' %}
+	{% set cartulaires_wallons_schema_base_URL = schema_base_URL ~ 'cartulaires-wallons/schemas/cartulaires-wallons.' %}
+	{% set cartulr_schema_base_URL = schema_base_URL ~ 'cartulr/schemas/cartulr.' %}
+	{% set originaux_schema_base_URL = schema_base_URL ~ 'originaux/schemas/' %}
+
+{# END. Set variables #}
+
+{# BEGIN. Dataset construction #}
+{% for object in dataset %}
+
+	{# BEGIN. Construct "head part" of dataset #}
+	{# The dataset "head part" contain  dataset general information and begin "datasetItems" key. If loop.index == 1 it means this is a first item and we are at the beginning of the dataset.)  #}
+	{% if loop.index == 1 %}
+	{
+		{# BEGIN. Information about the dataset #}
+		"datasetInformation":
+		{
+			{# datasetName #}
+			"datasetName":
+			{% if object.project_label is defined %}
+				{{ object.project_label|json_encode()|raw}},
+			{% else %}
+				"Nom du corpus",
+			{% endif %}
+
+			{# BEGIN. Construct keys "datasetURL", "datasetJsonSchemaURL" and "datasetAuthors" for the dataset #}
+
+			{# There is no one evident way to optimize this construction, I choose this one, maybe it's not a best way... 
+			Have to note a big problem with array construction in the twig file. That is, twig is not about the complex data manipulation. It is not so easy as in php and it not always possible to introduce array in the variable and then use it here or there... #}
+
+			{% if object.project_slug == "aposcripta" %}
+				"datasetURL": "{{ chartes_base_URL }}{{ object.project_slug }}",
+				"datasetJsonSchemaURL": ["{{ schema_base_URL }}{{ object.project_slug }}/schemas/{{ object.project_slug }}.dataset.schema.json"],
+				"datasetAuthors": ["Théry, Julien (Université Lumière de Lyon/ CIHAM, UMR 5648)"],
+			
+			{% elseif object.project_slug == "bullarium-franciscanum" %}
+				"datasetURL": "{{ chartes_base_URL }}{{ object.project_slug }}",
+				"datasetJsonSchemaURL": ["{{ schema_base_URL }}{{ object.project_slug }}/schemas/{{ object.project_slug }}.dataset.schema.json"],
+				"datasetAuthors": ["Heullant-Donat, Isabelle (Université de Reims)"],
+			
+			{% elseif object.project_slug == "cartulaires-wallons" %}
+				"datasetURL": "{{ repertoires_base_URL }}{{ object.project_slug }}",
+				"datasetJsonSchemaURL": 
+					[
+						"{{ cartulaires_wallons_schema_base_URL }}diocese.dataset.schema.json",
+						"{{ cartulaires_wallons_schema_base_URL }}entite.dataset.schema.json",
+						"{{ cartulaires_wallons_schema_base_URL }}generic.dataset.schema.json",
+						"{{ cartulaires_wallons_schema_base_URL }}personne.dataset.schema.json"
+					] ,
+				"datasetAuthors": ["Bertrand, Paul (IRHT, Université catholique de Louvain)"],
+			
+			{% elseif object.project_slug == "cartulr" %}
+				"datasetURL": "{{ repertoires_base_URL }}{{ object.project_slug }}",
+				"datasetJsonSchemaURL": 
+					[
+						"{{ cartulr_schema_base_URL }}depot.dataset.schema.json",
+						"{{ cartulr_schema_base_URL }}diocese.dataset.schema.json",
+						"{{ cartulr_schema_base_URL }}entite.dataset.schema.json",
+						"{{ cartulr_schema_base_URL }}exemplaire.dataset.schema.json",
+						"{{ cartulr_schema_base_URL }}generic.dataset.schema.json",
+						"{{ cartulr_schema_base_URL }}personne.dataset.schema.json",
+						"{{ cartulr_schema_base_URL }}province.dataset.schema.json"
+					] ,
+				"datasetAuthors": ["Bertrand, Paul (IRHT, Université catholique de Louvain)"],
+			
+			{% elseif object.project_slug in ['originaux', 'originaux2'] %}
+				"datasetURL": "{{ chartes_base_URL }}{{ object.project_slug }}",
+				"datasetJsonSchemaURL": 
+					[
+						"{{ schema_base_URL }}{{ originaux_schema_base_URL }}originaux1.dataset.schema.json",
+						"{{ schema_base_URL }}{{ originaux_schema_base_URL }}originaux2.dataset.schema.json"
+					] ,
+				"datasetAuthors": ["Guyot-Bachy, Isabelle (Université de Lorraine - CRUHL)", "Renault, Jean-Baptiste (Université de Lorraine - CRUHL)"],
+
+			{% elseif object.project_slug == "loj22" %}
+				"datasetURL": "{{ chartes_base_URL }}{{ object.project_slug }}",
+				"datasetJsonSchemaURL": ["{{ schema_base_URL }}{{ object.project_slug }}/schemas/{{ object.project_slug }}.dataset.schema.json"],
+				"datasetAuthors": ["Jamme, Armand (CIHAM, UMR 5648)"],
+			
+			{% elseif object.project_slug == "transscript" %}
+				"datasetURL": "{{ chartes_base_URL }}{{ object.project_slug }}",
+				"datasetJsonSchemaURL": ["{{ schema_base_URL }}{{ object.project_slug }}/schemas/{{ object.project_slug }}.dataset.schema.json"],
+				"datasetAuthors": ["Guyot-Bachy, Isabelle (Université de Lorraine - CRUHL)", "Margue, Michel (Université de Luxembourg)"],
+			
+			{% else %}
+				"datasetURL": "http://telma-chartes.irht.cnrs.fr",
+				"datasetJsonSchemaURL": ["Il n'existe pas de schéma pour ce jeu de données"] ,
+				"datasetAuthors": ["Préciser ici les auteurs du corpus"],
+
+			{% endif %}
+
+			{# END. Construct keys "datasetURL", "datasetJsonSchemaURL" and "datasetAuthors" for the dataset #}
+
+			{# datasetCreationDate #}
+			"datasetCreationDate": "{{ "now"|date("d/m/Y") }}",
+
+			{# datasetLicence #}
+			"datasetLicence": "CC BY-NC-SA 4.0",
+			
+			{# datasetStatus #}
+			"datasetStatus": "published"
+			
+		},
+		{# END. Information about the dataset #}
+
+			
+		{# BEGIN. Dataset items #}
+		"datasetItems":
+
+		{# BEGIN. Construct array of items #}
+		[
+		
+	{# END. Construct "head part" of dataset #}
+	{% endif %}
+
+			{
+				{# BEGIN. General informations about the item #}
+				"itemIdTELMA" : {{object.id|json_encode()|raw}},
+
+				"itemURL" :
+				{% if object.url is not null %}
+					{{ object.url|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+				{% elseif object.url is null %} {# This is done because two corpus "Cartulaire-wallons" and "CartulR" hosted by TELMA-Repertoir have "object.url" as "null" #}
+					"https://telma-repertoires.irht.cnrs.fr/{{ object.project_slug }}/notice-{{ object.type }}/{{ object.id }}",
+				{% endif %}
+				
+				"itemStatus" :
+				{% if object.status == 2 %}
+					"published",
+				{% endif %}
+				{% if object.status == 1 %}
+					"not published",
+				{% endif %}
+				
+				"itemType":{{ object.type|json_encode()|raw }},
+				{# END. General informations about the item #}
+
+
+				{# BEGIN. Constract an array with unique types present in the item #}
+				
+				{# Construct an array with ALL "types" present in item #}
+				{% set all_types = object.elements|column('type') %}
+
+				{# Construct an empty array to put where only unique types values #}
+				{% set unique_types = [] %}
+
+				{# BEGIN. Filter and delete duplicate types #}
+				{% for type_to_filter in all_types %} {# loop to go through ALL types present in item #}
+					{% if type_to_filter not in unique_types and type_to_filter != "id_telma" %} {# check if type is not already present in new array and if this type is not an "id_telma" ("id_telma" is a former id from old TELMA site)  #}
+						{% set unique_types = unique_types|merge([type_to_filter]) %} {# add value to array #}
+					{% endif %}
+				{% endfor %}
+				{# END. Filter and delete duplicate types #}
+
+				{# END. Constract an array with unique types present in the item #}
+
+
+				{# BEGIN. Loop through unique types #}
+				{% for type in unique_types %}
+
+					{# BEGIN. Retrieve items by type #}
+					{% for element in object.elements|filter(element => element.type == type) %} {# check if given type is a same as type from the list of unique types #}
+
+						{# possible scenarios to handle json elements:
+						 1) there is only one element of this type (let's say only one "author") => it means this will be an object and not array;
+						 	1a) this element have a childs (keys "children" or "range" (for date)) => we will construct a "Group" to regroup all childs; 
+							1b) this element doesn't have any childs => nothing to construct, this is a simple object;
+						2) there are few elements of the same type (let's say there are few "autors") => it means this will be an array;
+							2a) this element have a childs (keys "children" or "range" (for date)) => we will construct a "Group" to regroup all childs;  
+							2b) this element doesn't have any childs => nothing to regroup, this is a "simple" array;
+						#}
+
+						{# BEGIN. If there is only one element of the given type (see above "Scenario 1") #}
+
+						{# if there is only one element of this type and there are no childs (see above "Scenario 1b") #}
+						{# si le champ a une seule valeur (not array) et n'a pas d'enfant (donc pas de groupement) #}
+						{% if loop.length == 1 and element.children is not defined %}
+							{{element.type|json_encode()|raw}}:{{element.value|escape|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw}}
+						
+						{# if there is only one element of this type but there are some childs (see above "Scenario 1a") #}
+						{# si le champ a une seule valeur (not array) et a des enfants (donc on crée un groupe) #}
+						{%~ elseif loop.length == 1 and element.children is defined and element.range is defined %}
+							{% set varName = element.type ~ 'Group' %}
+							{% set children = element.children %}
+							{% set range = element.range %}
+							{% set children = children|merge(range) %}
+							{% set parentType = element.type %}
+							{% set parentValue = element.value %}
+							{% set parent = { (parentType) : parentValue } %}
+							{% set parent = parent|merge(children) %}
+								{{varName|json_encode()|raw}}:
+								{{parent|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw}}
+						
+						{# if there is only one element of this type but there are some childs (see above "Scenario 1a") #}
+						{# si le champ a une seule valeur (not array) et a des enfants (donc on crée un groupe) #}
+						{# ??? Useful ??? It is necessayr to have a specific code only for case of "element.range" ??? Can merge with code above???  #}
+						{%~ elseif loop.length == 1 and element.children is defined and element.range is not defined %}
+							{% set varName = element.type ~ 'Group' %}
+							{% set children = element.children %}
+							{% set parentType = element.type %}
+							{% set parentValue = element.value %}
+							{% set parent = { (parentType) : parentValue } %}
+							{% set parent = parent|merge(children)  %}
+								{{varName|json_encode()|raw}}:
+								{{parent|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw}}
+						
+						{% endif %}
+						{# END. If there is only one element of the given type (see above "Scenario 1") #}
+
+						{# BEGIN. If there are few elements of the same type (see above "Scenario 2") #}
+						{%~ if loop.length > 1 %}
+
+							{# BEGIN. It is a first element of array. Open array #}
+							{%~ if loop.first %}
+								{# This element doesn't have childs #}
+								{%~ if element.children is not defined %}
+									{{element.type|json_encode()|raw}} : [
+								{# This element have childs => create group #}
+								{%~ elseif element.children is defined %}
+									{% set varName = element.type ~ 'Group' %}
+									{{varName|json_encode()|raw}}: [
+								{% endif ~%}
+							{% endif ~%}
+							{# END. It is a first element of array. Open array #}
+
+							{# not sure about this part... #}
+							{%~ if element.children is not defined %}
+								{{element.value|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw}}
+							{%~ elseif element.children is defined %}
+								{% set children = element.children %}
+								{% set parentType = element.type %}
+								{% set parentValue = element.value %}
+								{% set parent = { (parentType) : parentValue } %}
+								{% set parent = parent|merge(children) %}
+									{{parent|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw}}
+							{% endif ~%}
+
+							{# BEGIN. It is not a first and not a last element of array. Continue array #}
+							{%~ if not loop.last %},
+							{% endif ~%}
+							{# BEGIN. It is not a first and not a last element of array. Continue array #}
+
+							{# BEGIN. It is a last element of array. Close array #}
+							{% if loop.last %}]
+							{% endif %}
+							{# END. It is a last element of array. Close array #}
+
+						{% endif ~%}
+						{# END. If there are few elements of the same type (see above "Scenario 2") #}
+
+					{% endfor %}
+					{# END. Retrieve items by type #}
+
+					{# Note: Not realy sure about the next two constructions... But it seems to work, so... #}
+					
+					{# BEGIN. If it is a not last element/type of the whole item => put comma and continue item object construction #}
+					{% if not loop.last %},
+					{% endif %}
+					{# END. If it is a not last element/type of the whole item => put comma and continue #}
+
+					{# BEGIN. If it is a last element/type of the whole item => close item object construction with "curly brackets" (= une accolade ) #}
+					{% if loop.last %}}
+					{% endif %}
+					{# END. If it is a last element/type of the whole item => close item object construction with "curly brackets" (= une accolade) #}
+
+				{% endfor %}
+				{# END. Loop through unique types #}
+
+
+				{# BEGIN. If it is not a last item of the dataset array => put comma and continue to add items in the dataset #}
+				{% if not loop.last %},
+				{% endif %}
+				{# END. If it is not a last item of the dataset => put comma and continue to add items in the dataset #}
+
+
+				{# BEGIN. Check if a last item of the dataset array #}
+				{# If it is a last item of the dataset array => it is a end of the items array and the whole dataset => so 1) close array with "square brackets"; 2) close whole dataset with "curly brackets" (= une accolade)  #}
+				{% if loop.last %}]}
+				{% endif %}
+				{# END. Check if a last item of the dataset array #}
+
+		{# END. Dataset items #}
+
+{% endfor %}
+{# END. Dataset construction #}
