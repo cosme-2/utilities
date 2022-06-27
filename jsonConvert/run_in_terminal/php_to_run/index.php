@@ -26,7 +26,6 @@ $str = file_get_contents($testfile);
 ini_set('memory_limit', '9000M'); // this setting is neccaissary to run this php file in terminal and overpass memory limit for large json files
 $data = json_decode($str, true); // decode the JSON into an associative array
 
-
 //met en forme le json après récupération du twig
 function prettyPrint( $json )
 {
