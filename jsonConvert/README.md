@@ -2,7 +2,7 @@
 
 ## Conversion des fichiers JSON selon le schéma personnel des données
 
-Ce module permet de convertir un fichier JSON vers un autre fichier JSON formaté selon le schéma personnel. Initialement ce module a été créé pour la conversion des fichiers JSON extraits depuis la plateforme TELMA. (La première version de ce module a été proposée par M.Charbonnel). Ce module s'appuie sur le framework Symphony.
+Ce module permet de convertir un fichier JSON vers un autre fichier JSON formaté selon le schéma personnel. Initialement ce module a été créé pour la conversion des fichiers JSON extraits depuis la plateforme TELMA. (La première version de ce module a été proposée par M.Charbonnel). Ce module s'appuie sur le framework Symphony. 
 
 Actuellement, ce module peut être utilisé pour la conversion de n'importe quel fichier JSON selon le modèle personnel. Voici les éléments principaux de ce module:
 
